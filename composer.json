@@ -1,0 +1,30 @@
+{
+    "name": "fyre/request",
+    "description": "A request library.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "elusivecodes",
+            "email": "elusivecodes@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fyre\\Request\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "fyre/header": "^1.0",
+        "fyre/message": "^1.0",
+        "fyre/uri": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
+    }
+}
