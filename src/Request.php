@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Fyre\Request;
+namespace Fyre\Http;
 
 use
-    Fyre\Message\Message,
+    Fyre\Http\Message,
     Fyre\Uri\Uri;
 
 use function

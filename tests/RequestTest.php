@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace Tests;
 
 use
-    Fyre\Message\Message,
-    Fyre\Request\Request,
+    Fyre\Http\Message,
+    Fyre\Http\Request,
     Fyre\Uri\Uri,
     PHPUnit\Framework\TestCase;
 
