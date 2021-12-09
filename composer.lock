@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "fyre/header",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreHeader.git",
-                "reference": "709a877be2bd224c58055c0892db8f11ebe43ea5"
+                "reference": "f5796184801ce2e50e01cbb823a36321bfd5fdfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreHeader/zipball/709a877be2bd224c58055c0892db8f11ebe43ea5",
-                "reference": "709a877be2bd224c58055c0892db8f11ebe43ea5",
+                "url": "https://api.github.com/repos/elusivecodes/FyreHeader/zipball/f5796184801ce2e50e01cbb823a36321bfd5fdfb",
+                "reference": "f5796184801ce2e50e01cbb823a36321bfd5fdfb",
                 "shasum": ""
             },
             "require-dev": {
@@ -42,9 +42,9 @@
             "description": "A header library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreHeader/issues",
-                "source": "https://github.com/elusivecodes/FyreHeader/tree/v1.0.2"
+                "source": "https://github.com/elusivecodes/FyreHeader/tree/v1.0.3"
             },
-            "time": "2021-12-09T11:57:24+00:00"
+            "time": "2021-12-09T12:18:26+00:00"
         },
         {
             "name": "fyre/message",

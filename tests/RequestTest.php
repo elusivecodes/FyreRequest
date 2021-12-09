@@ -14,7 +14,7 @@ final class RequestTest extends TestCase
 
     protected Request $request;
 
-    public function testRequestMessage(): void
+    public function testMessage(): void
     {
         $this->assertInstanceOf(
             Message::class,
@@ -22,7 +22,7 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testRequestUri(): void
+    public function testUri(): void
     {
         $uri = new Uri();
         $request = new Request($uri);
@@ -33,7 +33,7 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testRequestGetMethod(): void
+    public function testGetMethod(): void
     {
         $this->assertEquals(
             'get',
@@ -41,7 +41,7 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testRequestGetUri(): void
+    public function testGetUri(): void
     {
         $this->assertInstanceOf(
             Uri::class,
@@ -49,7 +49,7 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testRequestSetMethod(): void
+    public function testSetMethod(): void
     {
         $this->assertEquals(
             $this->request,
@@ -62,7 +62,7 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testRequestSetMethodUppercase(): void
+    public function testSetMethodUppercase(): void
     {
         $this->request->setMethod('POST');
 
