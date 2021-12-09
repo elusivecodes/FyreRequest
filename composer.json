@@ -1,6 +1,6 @@
 {
     "name": "fyre/request",
-    "description": "A request library.",
+    "description": "A HTTP request library.",
     "type": "library",
     "license": "MIT",
     "authors": [
