@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "fyre/header",
-            "version": "v1.0.3",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreHeader.git",
-                "reference": "f5796184801ce2e50e01cbb823a36321bfd5fdfb"
+                "reference": "2d9b19a74345570fa745d847262c8ac57a2c3120"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreHeader/zipball/f5796184801ce2e50e01cbb823a36321bfd5fdfb",
-                "reference": "f5796184801ce2e50e01cbb823a36321bfd5fdfb",
+                "url": "https://api.github.com/repos/elusivecodes/FyreHeader/zipball/2d9b19a74345570fa745d847262c8ac57a2c3120",
+                "reference": "2d9b19a74345570fa745d847262c8ac57a2c3120",
                 "shasum": ""
             },
             "require-dev": {
@@ -39,25 +39,25 @@
                     "email": "elusivecodes@gmail.com"
                 }
             ],
-            "description": "A header library.",
+            "description": "A HTTP header library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreHeader/issues",
-                "source": "https://github.com/elusivecodes/FyreHeader/tree/v1.0.3"
+                "source": "https://github.com/elusivecodes/FyreHeader/tree/v1.0.5"
             },
-            "time": "2021-12-09T12:18:26+00:00"
+            "time": "2021-12-12T09:11:24+00:00"
         },
         {
             "name": "fyre/message",
-            "version": "v1.0.2",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreMessage.git",
-                "reference": "7d3714d2dfe56bbc877156c5f420378d4f236698"
+                "reference": "87e3e126d751517232340f0e913d1336793a21e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreMessage/zipball/7d3714d2dfe56bbc877156c5f420378d4f236698",
-                "reference": "7d3714d2dfe56bbc877156c5f420378d4f236698",
+                "url": "https://api.github.com/repos/elusivecodes/FyreMessage/zipball/87e3e126d751517232340f0e913d1336793a21e9",
+                "reference": "87e3e126d751517232340f0e913d1336793a21e9",
                 "shasum": ""
             },
             "require": {
@@ -85,22 +85,22 @@
             "description": "A HTTP message library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreMessage/issues",
-                "source": "https://github.com/elusivecodes/FyreMessage/tree/v1.0.2"
+                "source": "https://github.com/elusivecodes/FyreMessage/tree/v1.0.4"
             },
-            "time": "2021-12-09T12:02:41+00:00"
+            "time": "2021-12-12T09:27:23+00:00"
         },
         {
             "name": "fyre/uri",
-            "version": "v1.0.1",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreUri.git",
-                "reference": "5c0fb6f8813b7d380e62dbe63c95de02f97fb402"
+                "reference": "56a87ffd82405efcad1328b8a2178ef561ca46e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreUri/zipball/5c0fb6f8813b7d380e62dbe63c95de02f97fb402",
-                "reference": "5c0fb6f8813b7d380e62dbe63c95de02f97fb402",
+                "url": "https://api.github.com/repos/elusivecodes/FyreUri/zipball/56a87ffd82405efcad1328b8a2178ef561ca46e4",
+                "reference": "56a87ffd82405efcad1328b8a2178ef561ca46e4",
                 "shasum": ""
             },
             "require-dev": {
@@ -125,9 +125,9 @@
             "description": "A URI library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreUri/issues",
-                "source": "https://github.com/elusivecodes/FyreUri/tree/v1.0.1"
+                "source": "https://github.com/elusivecodes/FyreUri/tree/v1.0.4"
             },
-            "time": "2021-12-09T11:51:58+00:00"
+            "time": "2021-12-12T09:28:50+00:00"
         }
     ],
     "packages-dev": [
