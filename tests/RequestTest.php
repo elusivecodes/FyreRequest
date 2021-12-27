@@ -72,7 +72,7 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->request = new Request();
     }
