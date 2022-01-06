@@ -52,7 +52,7 @@ class Request extends Message
      * @param string $method The request method.
      * @return Request The Request.
      */
-    public function setMethod(string $method): self
+    public function setMethod(string $method): static
     {
         $this->method = strtolower($method);
 
