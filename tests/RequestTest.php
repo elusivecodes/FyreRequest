@@ -27,7 +27,7 @@ final class RequestTest extends TestCase
         $uri = new Uri();
         $request = new Request($uri);
 
-        $this->assertEquals(
+        $this->assertSame(
             $uri,
             $request->getUri()
         );
@@ -35,7 +35,7 @@ final class RequestTest extends TestCase
 
     public function testGetMethod(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             'get',
             $this->request->getMethod()
         );
@@ -51,12 +51,12 @@ final class RequestTest extends TestCase
 
     public function testSetMethod(): void
     {
-        $this->assertEquals(
+        $this->assertSame(
             $this->request,
             $this->request->setMethod('post')
         );
 
-        $this->assertEquals(
+        $this->assertSame(
             'post',
             $this->request->getMethod()
         );
@@ -66,7 +66,7 @@ final class RequestTest extends TestCase
     {
         $this->request->setMethod('POST');
 
-        $this->assertEquals(
+        $this->assertSame(
             'post',
             $this->request->getMethod()
         );
