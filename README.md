@@ -54,6 +54,8 @@ Get the request URI.
 $uri = $request->getUri();
 ```
 
+This method will return a [*Uri*](https://github.com/elusivecodes/FyreUri).
+
 **Set Method**
 
 Set the request method.
