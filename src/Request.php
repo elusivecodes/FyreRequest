@@ -5,7 +5,7 @@ namespace Fyre\Http;
 
 use
     Fyre\Http\Message,
-    Fyre\Uri\Uri;
+    Fyre\URI\Uri;
 
 use function
     strtolower;
