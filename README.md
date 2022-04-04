@@ -27,7 +27,7 @@ use Fyre\Http\Request;
 
 ## Request Creation
 
-- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreUri) and will default to *null*.
+- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI) and will default to *null*.
 
 ```php
 $request = new Request($uri);
@@ -54,7 +54,7 @@ Get the request URI.
 $uri = $request->getUri();
 ```
 
-This method will return a [*Uri*](https://github.com/elusivecodes/FyreUri).
+This method will return a [*Uri*](https://github.com/elusivecodes/FyreURI).
 
 **Set Method**
 
