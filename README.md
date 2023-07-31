@@ -1,6 +1,6 @@
 # FyreRequest
 
-**FyreRequest** is a free, HTTP request library for *PHP*.
+**FyreRequest** is a free, open-source immutable HTTP request library for *PHP*.
 
 
 ## Table Of Contents
@@ -63,5 +63,15 @@ Set the request method.
 - `$method` is a string representing the request method.
 
 ```php
-$request->setMethod($method);
+$newRequest = $request->setMethod($method);
+```
+
+**Set Uri**
+
+Set the request URI.
+
+- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI).
+
+```php
+$newRequest = $request->setUri($uri);
 ```

@@ -3,18 +3,28 @@ declare(strict_types=1);
 
 namespace Fyre\Http;
 
-use
-    Fyre\Http\Message,
-    Fyre\URI\Uri;
+use InvalidArgumentException;
 
-use function
-    strtolower;
+use function in_array;
+use function strtolower;
 
 /**
  * Request
  */
 class Request extends Message
 {
+
+    protected const VALID_METHODS = [
+        'connect',
+        'delete',
+        'get',
+        'head',
+        'options',
+        'patch',
+        'post',
+        'put',
+        'trace'
+    ];
 
     protected string $method = 'get';
 
@@ -42,7 +52,7 @@ class Request extends Message
      * Get the request URI.
      * @return Uri The request URI.
      */
-    public function getURI(): Uri
+    public function getUri(): Uri
     {
         return $this->uri;
     }
@@ -50,13 +60,36 @@ class Request extends Message
     /**
      * Set the request method.
      * @param string $method The request method.
-     * @return Request The Request.
+     * @return Request A new Request.
+     * @throws InvalidArgumentException if the method is not valid.
      */
     public function setMethod(string $method): static
     {
-        $this->method = strtolower($method);
+        $method = strtolower($method);
 
-        return $this;
+        if (!in_array($method, static::VALID_METHODS)) {
+            throw new InvalidArgumentException('Invalid method: '.$method);
+        }
+
+        $temp = clone $this;
+
+        $temp->method = $method;
+
+        return $temp;
+    }
+
+    /**
+     * Set the request URI.
+     * @param Uri $uri The URI.
+     * @return Request A new Request.
+     */
+    public function setUri(Uri $uri): static
+    {
+        $temp = clone $this;
+
+        $temp->uri = $uri;
+
+        return $temp;
     }
 
 }

@@ -3,22 +3,22 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use
-    Fyre\Http\Message,
-    Fyre\Http\Request,
-    Fyre\Uri\Uri,
-    PHPUnit\Framework\TestCase;
+use Fyre\Http\Message;
+use Fyre\Http\Request;
+use Fyre\Http\Uri;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 final class RequestTest extends TestCase
 {
 
-    protected Request $request;
-
     public function testMessage(): void
     {
+        $request = new Request();
+
         $this->assertInstanceOf(
             Message::class,
-            $this->request
+            $request
         );
     }
 
@@ -35,46 +35,81 @@ final class RequestTest extends TestCase
 
     public function testGetMethod(): void
     {
+        $request = new Request();
+
         $this->assertSame(
             'get',
-            $this->request->getMethod()
+            $request->getMethod()
         );
     }
 
     public function testGetUri(): void
     {
+        $request = new Request();
+
         $this->assertInstanceOf(
             Uri::class,
-            $this->request->getUri()
+            $request->getUri()
         );
     }
 
     public function testSetMethod(): void
     {
+        $request1 = new Request();
+        $request2 = $request1->setMethod('post');
+
         $this->assertSame(
-            $this->request,
-            $this->request->setMethod('post')
+            'get',
+            $request1->getMethod()
         );
 
         $this->assertSame(
             'post',
-            $this->request->getMethod()
+            $request2->getMethod()
         );
     }
 
     public function testSetMethodUppercase(): void
     {
-        $this->request->setMethod('POST');
+        $request1 = new Request();
+        $request2 = $request1->setMethod('POST');
+
+        $this->assertSame(
+            'get',
+            $request1->getMethod()
+        );
 
         $this->assertSame(
             'post',
-            $this->request->getMethod()
+            $request2->getMethod()
         );
     }
 
-    protected function setUp(): void
+    public function testSetMethodInvalid(): void
     {
-        $this->request = new Request();
+        $this->expectException(InvalidArgumentException::class);
+
+        $request = new Request();
+        $request->setMethod('invalid');
+    }
+
+    public function testSetUri(): void
+    {
+        $uri1 = new Uri();
+        $uri2 = new Uri();
+
+        $request1 = new Request($uri1);
+        $request2 = $request1->setUri($uri2);
+
+        $this->assertSame(
+            $uri1,
+            $request1->getUri()
+        );
+
+        $this->assertSame(
+            $uri2,
+            $request2->getUri()
+        );
     }
 
 }
