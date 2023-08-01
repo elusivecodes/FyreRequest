@@ -33,6 +33,7 @@ class Request extends Message
     /**
      * New Request constructor.
      * @param Uri|null $uri The request URI.
+     * @param array $options The request options.
      */
     public function __construct(Uri|null $uri = null, array $options = [])
     {
