@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69cda046b1044d6ab8d584ae24750e02",
+    "content-hash": "5fbf0b322ee1caef0f792463acaa4fdd",
     "packages": [
         {
             "name": "fyre/header",
@@ -48,16 +48,16 @@
         },
         {
             "name": "fyre/message",
-            "version": "v2.0.1",
+            "version": "v3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreMessage.git",
-                "reference": "9c478cef72a1d4ca90a03ce2107d0697d5d3f066"
+                "reference": "cf749e3ad1f8e3e0558c0c3fe658a12ed27acdfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreMessage/zipball/9c478cef72a1d4ca90a03ce2107d0697d5d3f066",
-                "reference": "9c478cef72a1d4ca90a03ce2107d0697d5d3f066",
+                "url": "https://api.github.com/repos/elusivecodes/FyreMessage/zipball/cf749e3ad1f8e3e0558c0c3fe658a12ed27acdfc",
+                "reference": "cf749e3ad1f8e3e0558c0c3fe658a12ed27acdfc",
                 "shasum": ""
             },
             "require": {
@@ -85,9 +85,9 @@
             "description": "A HTTP message library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreMessage/issues",
-                "source": "https://github.com/elusivecodes/FyreMessage/tree/v2.0.1"
+                "source": "https://github.com/elusivecodes/FyreMessage/tree/v3.0"
             },
-            "time": "2023-07-31T13:35:38+00:00"
+            "time": "2023-08-01T07:48:09+00:00"
         },
         {
             "name": "fyre/uri",

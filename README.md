@@ -28,9 +28,14 @@ use Fyre\Http\Request;
 ## Request Creation
 
 - `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI) and will default to *null*.
+- `$options` is an array containing the message options.
+    - `method` is a string representing the request method, and will default to "*get*".
+    - `body` is a string representing the message body, and will default to "".
+    - `headers` is an array containing headers to set, and will default to *[]*.
+    - `protocolVersion` is a string representing the protocol version, and will default to "*1.1*".
 
 ```php
-$request = new Request($uri);
+$request = new Request($uri, $options);
 ```
 
 

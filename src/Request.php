@@ -34,9 +34,16 @@ class Request extends Message
      * New Request constructor.
      * @param Uri|null $uri The request URI.
      */
-    public function __construct(Uri|null $uri = null)
+    public function __construct(Uri|null $uri = null, array $options = [])
     {
-        $this->uri = $uri ?? new Uri();
+        parent::__construct($options);
+
+        $uri ??= new Uri();
+        $options['method'] ??= 'get';
+
+        $this->method = static::filterMethod($options['method']);
+
+        $this->uri = $uri;
     }
 
     /**
@@ -61,19 +68,12 @@ class Request extends Message
      * Set the request method.
      * @param string $method The request method.
      * @return Request A new Request.
-     * @throws InvalidArgumentException if the method is not valid.
      */
     public function setMethod(string $method): static
     {
-        $method = strtolower($method);
-
-        if (!in_array($method, static::VALID_METHODS)) {
-            throw new InvalidArgumentException('Invalid method: '.$method);
-        }
-
         $temp = clone $this;
 
-        $temp->method = $method;
+        $temp->method = static::filterMethod($method);
 
         return $temp;
     }
@@ -90,6 +90,23 @@ class Request extends Message
         $temp->uri = $uri;
 
         return $temp;
+    }
+
+    /**
+     * Filter the method.
+     * @param string $method The method.
+     * @return string The filtered method.
+     * @throws InvalidArgumentException if the method is not valid.
+     */
+    protected static function filterMethod(string $method): string
+    {
+        $method = strtolower($method);
+
+        if (!in_array($method, static::VALID_METHODS)) {
+            throw new InvalidArgumentException('Invalid method: '.$method);
+        }
+
+        return $method;
     }
 
 }

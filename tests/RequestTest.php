@@ -22,14 +22,44 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testUri(): void
+    public function testConstructor(): void
     {
         $uri = new Uri();
-        $request = new Request($uri);
+
+        $request = new Request($uri, [
+            'method' => 'post',
+            'body' => 'test',
+            'headers' => [
+                'test' => 'value'
+            ],
+            'protocolVersion' => '2.0'
+        ]);
 
         $this->assertSame(
             $uri,
             $request->getUri()
+        );
+
+        $this->assertSame(
+            'post',
+            $request->getMethod()
+        );
+
+        $this->assertSame(
+            'test',
+            $request->getBody()
+        );
+
+        $this->assertSame(
+            [
+                'value'
+            ],
+            $request->getHeader('test')->getValue()
+        );
+
+        $this->assertSame(
+            '2.0',
+            $request->getProtocolVersion()
         );
     }
 
