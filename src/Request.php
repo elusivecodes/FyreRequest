@@ -13,7 +13,6 @@ use function strtolower;
  */
 class Request extends Message
 {
-
     protected const VALID_METHODS = [
         'connect',
         'delete',
@@ -23,7 +22,7 @@ class Request extends Message
         'patch',
         'post',
         'put',
-        'trace'
+        'trace',
     ];
 
     protected string $method = 'get';
@@ -32,6 +31,7 @@ class Request extends Message
 
     /**
      * New Request constructor.
+     *
      * @param Uri|null $uri The request URI.
      * @param array $options The request options.
      */
@@ -49,6 +49,7 @@ class Request extends Message
 
     /**
      * Get the request method.
+     *
      * @return string The request method.
      */
     public function getMethod(): string
@@ -58,6 +59,7 @@ class Request extends Message
 
     /**
      * Get the request URI.
+     *
      * @return Uri The request URI.
      */
     public function getUri(): Uri
@@ -67,6 +69,7 @@ class Request extends Message
 
     /**
      * Set the request method.
+     *
      * @param string $method The request method.
      * @return Request A new Request.
      */
@@ -81,6 +84,7 @@ class Request extends Message
 
     /**
      * Set the request URI.
+     *
      * @param Uri $uri The URI.
      * @return Request A new Request.
      */
@@ -95,8 +99,10 @@ class Request extends Message
 
     /**
      * Filter the method.
+     *
      * @param string $method The method.
      * @return string The filtered method.
+     *
      * @throws InvalidArgumentException if the method is not valid.
      */
     protected static function filterMethod(string $method): string
@@ -109,5 +115,4 @@ class Request extends Message
 
         return $method;
     }
-
 }

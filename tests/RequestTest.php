@@ -11,17 +11,6 @@ use PHPUnit\Framework\TestCase;
 
 final class RequestTest extends TestCase
 {
-
-    public function testMessage(): void
-    {
-        $request = new Request();
-
-        $this->assertInstanceOf(
-            Message::class,
-            $request
-        );
-    }
-
     public function testConstructor(): void
     {
         $uri = new Uri();
@@ -30,9 +19,9 @@ final class RequestTest extends TestCase
             'method' => 'post',
             'body' => 'test',
             'headers' => [
-                'test' => 'value'
+                'test' => 'value',
             ],
-            'protocolVersion' => '2.0'
+            'protocolVersion' => '2.0',
         ]);
 
         $this->assertSame(
@@ -52,7 +41,7 @@ final class RequestTest extends TestCase
 
         $this->assertSame(
             [
-                'value'
+                'value',
             ],
             $request->getHeader('test')->getValue()
         );
@@ -83,26 +72,20 @@ final class RequestTest extends TestCase
         );
     }
 
+    public function testMessage(): void
+    {
+        $request = new Request();
+
+        $this->assertInstanceOf(
+            Message::class,
+            $request
+        );
+    }
+
     public function testSetMethod(): void
     {
         $request1 = new Request();
         $request2 = $request1->setMethod('post');
-
-        $this->assertSame(
-            'get',
-            $request1->getMethod()
-        );
-
-        $this->assertSame(
-            'post',
-            $request2->getMethod()
-        );
-    }
-
-    public function testSetMethodUppercase(): void
-    {
-        $request1 = new Request();
-        $request2 = $request1->setMethod('POST');
 
         $this->assertSame(
             'get',
@@ -123,6 +106,22 @@ final class RequestTest extends TestCase
         $request->setMethod('invalid');
     }
 
+    public function testSetMethodUppercase(): void
+    {
+        $request1 = new Request();
+        $request2 = $request1->setMethod('POST');
+
+        $this->assertSame(
+            'get',
+            $request1->getMethod()
+        );
+
+        $this->assertSame(
+            'post',
+            $request2->getMethod()
+        );
+    }
+
     public function testSetUri(): void
     {
         $uri1 = new Uri();
@@ -141,5 +140,4 @@ final class RequestTest extends TestCase
             $request2->getUri()
         );
     }
-
 }
