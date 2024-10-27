@@ -6,7 +6,7 @@
 ## Table Of Contents
 - [Installation](#installation)
 - [Request Creation](#request-creation)
-- [Methods](#methods)
+- [Request Methods](#request-methods)
 
 
 
@@ -39,7 +39,7 @@ $request = new Request($uri, $options);
 ```
 
 
-## Methods
+## Request Methods
 
 This class extends the [*Message*](https://github.com/elusivecodes/FyreMessage) class.
 
