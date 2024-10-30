@@ -5,8 +5,8 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [Request Creation](#request-creation)
-- [Request Methods](#request-methods)
+- [Basic Usage](#basic-usage)
+- [Methods](#methods)
 
 
 
@@ -25,7 +25,7 @@ use Fyre\Http\Request;
 ```
 
 
-## Request Creation
+## Basic Usage
 
 - `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI) and will default to *null*.
 - `$options` is an array containing the message options.
@@ -39,7 +39,7 @@ $request = new Request($uri, $options);
 ```
 
 
-## Request Methods
+## Methods
 
 This class extends the [*Message*](https://github.com/elusivecodes/FyreMessage) class.
 
