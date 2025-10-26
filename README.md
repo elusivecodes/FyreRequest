@@ -67,7 +67,7 @@ Get the request URI.
 $uri = $request->getUri();
 ```
 
-This method will return a [*Uri*](https://github.com/elusivecodes/FyreURI).
+This method will return a *UriInterface*.
 
 **With Method**
 
@@ -93,7 +93,7 @@ $newRequest = $request->withRequestTarget($requestTarget);
 
 Clone the *Request* with a new URI.
 
-- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI).
+- `$uri` is a *UriInterface*.
 - `$preserveHost` is a boolean indicating whether to preserve the host header, and will default to *false*.
 
 ```php
