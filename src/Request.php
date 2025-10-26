@@ -3,48 +3,66 @@ declare(strict_types=1);
 
 namespace Fyre\Http;
 
-use InvalidArgumentException;
+use Fyre\Http\Exceptions\RequestException;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\UriInterface;
 
 use function in_array;
-use function strtolower;
+use function is_string;
+use function preg_match;
+use function strtoupper;
 
 /**
  * Request
  */
-class Request extends Message
+class Request extends Message implements RequestInterface
 {
     protected const VALID_METHODS = [
-        'connect',
-        'delete',
-        'get',
-        'head',
-        'options',
-        'patch',
-        'post',
-        'put',
-        'trace',
+        'CONNECT',
+        'DELETE',
+        'GET',
+        'HEAD',
+        'OPTIONS',
+        'PATCH',
+        'POST',
+        'PUT',
+        'TRACE',
     ];
 
-    protected string $method = 'get';
+    protected string $method = 'GET';
 
-    protected Uri $uri;
+    protected string|null $requestTarget = null;
+
+    protected UriInterface $uri;
 
     /**
      * New Request constructor.
      *
-     * @param Uri|null $uri The request URI.
+     * @param string|UriInterface|null $uri The request URI.
      * @param array $options The request options.
      */
-    public function __construct(Uri|null $uri = null, array $options = [])
+    public function __construct(string|UriInterface|null $uri = null, array $options = [])
     {
         parent::__construct($options);
 
-        $uri ??= new Uri();
-        $options['method'] ??= 'get';
+        if (is_string($uri)) {
+            $uri = new Uri($uri);
+        } else {
+            $uri ??= new Uri();
+        }
+
+        $options['method'] ??= 'GET';
 
         $this->method = static::filterMethod($options['method']);
-
         $this->uri = $uri;
+
+        if (!$this->hasHeader('host') && $this->uri->getHost()) {
+            $host = $this->uri->getHost();
+            $port = $this->uri->getPort();
+
+            $this->headerNames['host'] = 'Host';
+            $this->headers['host'] = [$host.($port ? ':'.$port : '')];
+        }
     }
 
     /**
@@ -58,22 +76,42 @@ class Request extends Message
     }
 
     /**
+     * Get the request target.
+     *
+     * @return string The request target.
+     */
+    public function getRequestTarget(): string
+    {
+        if ($this->requestTarget !== null) {
+            return $this->requestTarget;
+        }
+
+        $target = $this->uri->getPath();
+
+        if ($this->uri->getQuery()) {
+            $target .= '?'.$this->uri->getQuery();
+        }
+
+        return $target ?: '/';
+    }
+
+    /**
      * Get the request URI.
      *
-     * @return Uri The request URI.
+     * @return UriInterface The request URI.
      */
-    public function getUri(): Uri
+    public function getUri(): UriInterface
     {
         return $this->uri;
     }
 
     /**
-     * Set the request method.
+     * Clone the Request with a new method.
      *
      * @param string $method The request method.
      * @return Request A new Request.
      */
-    public function setMethod(string $method): static
+    public function withMethod(string $method): static
     {
         $temp = clone $this;
 
@@ -83,16 +121,39 @@ class Request extends Message
     }
 
     /**
-     * Set the request URI.
+     * Clone the Request with a new request target.
      *
-     * @param Uri $uri The URI.
+     * @param string $requestTarget The request target.
+     * @return RequestInterface A new Request.
+     */
+    public function withRequestTarget(string $requestTarget): RequestInterface
+    {
+        $temp = clone $this;
+
+        $temp->requestTarget = static::filterRequestTarget($requestTarget);
+
+        return $temp;
+    }
+
+    /**
+     * Clone the Request with a new URI.
+     *
+     * @param UriInterface $uri The URI.
      * @return Request A new Request.
      */
-    public function setUri(Uri $uri): static
+    public function withUri(UriInterface $uri, bool $preserveHost = false): static
     {
         $temp = clone $this;
 
         $temp->uri = $uri;
+
+        if ((!$preserveHost || !$temp->hasHeader('Host')) && $temp->uri->getHost()) {
+            $host = $temp->uri->getHost();
+            $port = $temp->uri->getPort();
+
+            $temp->headerNames['host'] = 'Host';
+            $temp->headers['host'] = [$host.($port ? ':'.$port : '')];
+        }
 
         return $temp;
     }
@@ -103,16 +164,33 @@ class Request extends Message
      * @param string $method The method.
      * @return string The filtered method.
      *
-     * @throws InvalidArgumentException if the method is not valid.
+     * @throws RequestException if the method is not valid.
      */
     protected static function filterMethod(string $method): string
     {
-        $method = strtolower($method);
+        $method = strtoupper($method);
 
         if (!in_array($method, static::VALID_METHODS)) {
-            throw new InvalidArgumentException('Invalid method: '.$method);
+            throw RequestException::forInvalidMethod($method);
         }
 
         return $method;
+    }
+
+    /**
+     * Filter the request target.
+     *
+     * @param string $requestTarget The request target.
+     * @return string The filtered request target.
+     *
+     * @throws RequestException if the request target is not valid.
+     */
+    protected static function filterRequestTarget(string $requestTarget): string
+    {
+        if (preg_match('/\s/', $requestTarget)) {
+            throw RequestException::forInvalidRequestTarget($requestTarget);
+        }
+
+        return $requestTarget;
     }
 }

@@ -3,17 +3,18 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Fyre\Http\Exceptions\RequestException;
 use Fyre\Http\Message;
 use Fyre\Http\Request;
+use Fyre\Http\Stream;
 use Fyre\Http\Uri;
-use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 final class RequestTest extends TestCase
 {
     public function testConstructor(): void
     {
-        $uri = new Uri();
+        $uri = new Uri('https://test.com/path?a=1&b=2');
 
         $request = new Request($uri, [
             'method' => 'post',
@@ -30,20 +31,39 @@ final class RequestTest extends TestCase
         );
 
         $this->assertSame(
-            'post',
+            'POST',
             $request->getMethod()
+        );
+
+        $body = $request->getBody();
+
+        $this->assertInstanceOf(
+            Stream::class,
+            $body
         );
 
         $this->assertSame(
             'test',
-            $request->getBody()
+            $body->getContents()
         );
 
         $this->assertSame(
             [
                 'value',
             ],
-            $request->getHeader('test')->getValue()
+            $request->getHeader('test')
+        );
+
+        $this->assertSame(
+            [
+                'test.com',
+            ],
+            $request->getHeader('host')
+        );
+
+        $this->assertSame(
+            '/path?a=1&b=2',
+            $request->getRequestTarget()
         );
 
         $this->assertSame(
@@ -57,7 +77,7 @@ final class RequestTest extends TestCase
         $request = new Request();
 
         $this->assertSame(
-            'get',
+            'GET',
             $request->getMethod()
         );
     }
@@ -82,62 +102,104 @@ final class RequestTest extends TestCase
         );
     }
 
-    public function testSetMethod(): void
+    public function testWithMethod(): void
     {
         $request1 = new Request();
-        $request2 = $request1->setMethod('post');
+        $request2 = $request1->withMethod('post');
 
-        $this->assertSame(
-            'get',
-            $request1->getMethod()
+        $this->assertNotSame(
+            $request1,
+            $request2
         );
 
         $this->assertSame(
-            'post',
+            'POST',
             $request2->getMethod()
         );
     }
 
-    public function testSetMethodInvalid(): void
+    public function testWithMethodInvalid(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(RequestException::class);
 
         $request = new Request();
-        $request->setMethod('invalid');
+        $request->withMethod('invalid');
     }
 
-    public function testSetMethodUppercase(): void
+    public function testWithRequestTarget(): void
     {
         $request1 = new Request();
-        $request2 = $request1->setMethod('POST');
+        $request2 = $request1->withRequestTarget('/new-target');
 
-        $this->assertSame(
-            'get',
-            $request1->getMethod()
+        $this->assertNotSame(
+            $request1,
+            $request2
         );
 
         $this->assertSame(
-            'post',
-            $request2->getMethod()
+            '/new-target',
+            $request2->getRequestTarget()
         );
     }
 
-    public function testSetUri(): void
+    public function testWithUri(): void
     {
         $uri1 = new Uri();
         $uri2 = new Uri();
 
         $request1 = new Request($uri1);
-        $request2 = $request1->setUri($uri2);
+        $request2 = $request1->withUri($uri2);
 
-        $this->assertSame(
-            $uri1,
-            $request1->getUri()
+        $this->assertNotSame(
+            $request1,
+            $request2
         );
 
         $this->assertSame(
             $uri2,
             $request2->getUri()
+        );
+    }
+
+    public function testWithUriPreserveHost(): void
+    {
+        $uri1 = new Uri('https://example.com');
+        $uri2 = new Uri('https://test.com');
+
+        $request1 = new Request($uri1);
+        $request2 = $request1->withUri($uri2, true);
+
+        $this->assertNotSame(
+            $request1,
+            $request2
+        );
+
+        $this->assertSame(
+            [
+                'example.com',
+            ],
+            $request2->getHeader('host')
+        );
+    }
+
+    public function testWithUriUpdateHost(): void
+    {
+        $uri1 = new Uri('https://example.com');
+        $uri2 = new Uri('https://test.com');
+
+        $request1 = new Request($uri1);
+        $request2 = $request1->withUri($uri2, false);
+
+        $this->assertNotSame(
+            $request1,
+            $request2
+        );
+
+        $this->assertSame(
+            [
+                'test.com',
+            ],
+            $request2->getHeader('host')
         );
     }
 }

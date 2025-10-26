@@ -27,7 +27,7 @@ use Fyre\Http\Request;
 
 ## Basic Usage
 
-- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI) and will default to *null*.
+- `$uri` is a string or *UriInterface* and will default to *null*.
 - `$options` is an array containing the message options.
     - `method` is a string representing the request method, and will default to "*get*".
     - `body` is a string representing the message body, and will default to "".
@@ -61,22 +61,33 @@ $uri = $request->getUri();
 
 This method will return a [*Uri*](https://github.com/elusivecodes/FyreURI).
 
-**Set Method**
+**With Method**
 
-Set the request method.
+Clone the *Request* with a new method.
 
 - `$method` is a string representing the request method.
 
 ```php
-$newRequest = $request->setMethod($method);
+$newRequest = $request->withMethod($method);
 ```
 
-**Set Uri**
+**With Request Target**
 
-Set the request URI.
+Clone the *Request* with a new request target.
 
-- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI).
+- `$requestTarget` is a string representing the request target.
 
 ```php
-$newRequest = $request->setUri($uri);
+$newRequest = $request->withRequestTarget($requestTarget);
+```
+
+**With Uri**
+
+Clone the *Request* with a new URI.
+
+- `$uri` is a [*Uri*](https://github.com/elusivecodes/FyreURI).
+- `$preserveHost` is a boolean indicating whether to preserve the host header, and will default to *false*.
+
+```php
+$newRequest = $request->withUri($uri, $preserveHost);
 ```
