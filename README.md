@@ -67,8 +67,6 @@ Get the request URI.
 $uri = $request->getUri();
 ```
 
-This method will return a *UriInterface*.
-
 **With Method**
 
 Clone the *Request* with a new method.
