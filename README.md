@@ -30,7 +30,7 @@ use Fyre\Http\Request;
 - `$uri` is a string or *UriInterface* and will default to *null*.
 - `$options` is an array containing the message options.
     - `method` is a string representing the request method, and will default to "*get*".
-    - `body` is a string representing the message body, and will default to "".
+    - `body` is a string or *StreamInterface* representing the message body, and will default to "".
     - `headers` is an array containing headers to set, and will default to *[]*.
     - `protocolVersion` is a string representing the protocol version, and will default to "*1.1*".
 
@@ -49,6 +49,14 @@ Get the request method.
 
 ```php
 $method = $request->getMethod();
+```
+
+**Get Request Target**
+
+Get the request target.
+
+```php
+$requestTarget = $request->getRequestTarget();
 ```
 
 **Get Uri**

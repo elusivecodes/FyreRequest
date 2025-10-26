@@ -50,16 +50,16 @@
         },
         {
             "name": "fyre/message",
-            "version": "v4.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elusivecodes/FyreMessage.git",
-                "reference": "7ff7dbb7c1ae18bd3e652a208eb8e5bbd1b13a11"
+                "reference": "52f2dd4de4d6caca366a47c5fd3be36ddd724af4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elusivecodes/FyreMessage/zipball/7ff7dbb7c1ae18bd3e652a208eb8e5bbd1b13a11",
-                "reference": "7ff7dbb7c1ae18bd3e652a208eb8e5bbd1b13a11",
+                "url": "https://api.github.com/repos/elusivecodes/FyreMessage/zipball/52f2dd4de4d6caca366a47c5fd3be36ddd724af4",
+                "reference": "52f2dd4de4d6caca366a47c5fd3be36ddd724af4",
                 "shasum": ""
             },
             "require": {
@@ -90,9 +90,9 @@
             "description": "A HTTP message library.",
             "support": {
                 "issues": "https://github.com/elusivecodes/FyreMessage/issues",
-                "source": "https://github.com/elusivecodes/FyreMessage/tree/v4.0"
+                "source": "https://github.com/elusivecodes/FyreMessage/tree/v4.0.1"
             },
-            "time": "2025-10-25T11:15:48+00:00"
+            "time": "2025-10-26T02:56:26+00:00"
         },
         {
             "name": "fyre/stream",
