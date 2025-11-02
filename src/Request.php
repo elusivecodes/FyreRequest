@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Fyre\Http;
 
 use Fyre\Http\Exceptions\RequestException;
+use Override;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -70,6 +71,7 @@ class Request extends Message implements RequestInterface
      *
      * @return string The request method.
      */
+    #[Override]
     public function getMethod(): string
     {
         return $this->method;
@@ -80,6 +82,7 @@ class Request extends Message implements RequestInterface
      *
      * @return string The request target.
      */
+    #[Override]
     public function getRequestTarget(): string
     {
         if ($this->requestTarget !== null) {
@@ -100,6 +103,7 @@ class Request extends Message implements RequestInterface
      *
      * @return UriInterface The request URI.
      */
+    #[Override]
     public function getUri(): UriInterface
     {
         return $this->uri;
@@ -111,6 +115,7 @@ class Request extends Message implements RequestInterface
      * @param string $method The request method.
      * @return Request A new Request.
      */
+    #[Override]
     public function withMethod(string $method): static
     {
         $temp = clone $this;
@@ -126,6 +131,7 @@ class Request extends Message implements RequestInterface
      * @param string $requestTarget The request target.
      * @return RequestInterface A new Request.
      */
+    #[Override]
     public function withRequestTarget(string $requestTarget): RequestInterface
     {
         $temp = clone $this;
@@ -141,6 +147,7 @@ class Request extends Message implements RequestInterface
      * @param UriInterface $uri The URI.
      * @return Request A new Request.
      */
+    #[Override]
     public function withUri(UriInterface $uri, bool $preserveHost = false): static
     {
         $temp = clone $this;
